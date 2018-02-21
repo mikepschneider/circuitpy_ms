@@ -6,10 +6,11 @@ import neopixel
 import math
 from digitalio import DigitalInOut, Direction, Pull
 
-from demos import BlinkDemo
+from demos import BlinkDemo, TouchDemo
 
 demo1 = BlinkDemo()
+demo2 = TouchDemo()
 
 while True:
-    demo1.next()
+    demo2.next()
     time.sleep(0.05)

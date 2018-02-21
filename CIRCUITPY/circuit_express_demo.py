@@ -10,15 +10,6 @@ led = digitalio.DigitalInOut(board.D13)
 led.direction = digitalio.Direction.OUTPUT
 
 
-touch1 = touchio.TouchIn(board.A1)
-touch2 = touchio.TouchIn(board.A2)
-touch3 = touchio.TouchIn(board.A3)
-touch4 = touchio.TouchIn(board.A4)
-touch5 = touchio.TouchIn(board.A5)
-touch6 = touchio.TouchIn(board.A6)
-touch7 = touchio.TouchIn(board.A7)
-
-
 pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness=.2)
 pixels.fill((0,0,0))
 pixels.show()
@@ -102,6 +93,17 @@ def simpleCircle(wait):
         pixels[i] = BLACK
         time.sleep(wait)
     time.sleep(1)
+
+
+
+
+touch1 = touchio.TouchIn(board.A1)
+touch2 = touchio.TouchIn(board.A2)
+touch3 = touchio.TouchIn(board.A3)
+touch4 = touchio.TouchIn(board.A4)
+touch5 = touchio.TouchIn(board.A5)
+touch6 = touchio.TouchIn(board.A6)
+touch7 = touchio.TouchIn(board.A7)
 
 
 def touch_demo():
