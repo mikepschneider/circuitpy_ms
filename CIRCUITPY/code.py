@@ -13,4 +13,4 @@ demo2 = TouchDemo()
 
 while True:
     demo2.next()
-    time.sleep(0.05)
+    time.sleep(0.001)

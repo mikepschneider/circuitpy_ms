@@ -30,6 +30,7 @@ class TouchDemo(NonBlockingTimer):
     def __init__(self):
         super(TouchDemo, self).__init__()
 
+
         self.pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness=.2)
         self.pixels.fill((0,0,0))
         self.pixels.show()
@@ -41,10 +42,10 @@ class TouchDemo(NonBlockingTimer):
         self.touch5 = touchio.TouchIn(board.A5)
         self.touch6 = touchio.TouchIn(board.A6)
         self.touch7 = touchio.TouchIn(board.A7)
+        super(BlinkDemo, self).set_interval(0.01)
 
     def next(self):
         if (super(TouchDemo, self).next()):
-
             self.pixels[6] = mapCapToNeo(self.touch1.raw_value)
             self.pixels[8] = mapCapToNeo(self.touch2.raw_value)
             self.pixels[9] = mapCapToNeo(self.touch3.raw_value)
@@ -52,20 +53,7 @@ class TouchDemo(NonBlockingTimer):
             self.pixels[2] = mapCapToNeo(self.touch5.raw_value)
             self.pixels[3] = mapCapToNeo(self.touch6.raw_value)
             self.pixels[4] = mapCapToNeo(self.touch7.raw_value)
-
-            # print("A1 %16s A2 %16s A3 %16s A4 %16s A5 %16s A6 %16s A7 %16s"
-            #         % (pixels[6], pixels[8], pixels[9],
-            #         pixels[1], pixels[2], pixels[3], pixels[4]))
             self.pixels.show()
-
-                # for j in range(255):
-                #     for i in range(len(pixels)):
-                #         idx = int (i+j)
-                #         pixels[i] = wheel(idx & 255)
-                #     pixels.show()
-                #     time.sleep(wait)
-                #
-            super(BlinkDemo, self).set_interval(0.01)
 
 
 CAP_LOW = 700

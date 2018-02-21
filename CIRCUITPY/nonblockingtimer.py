@@ -14,10 +14,10 @@ class NonBlockingTimer:
         self.current_time = time.monotonic()
         elapsed = self.current_time - self.last_time
         if (elapsed > self.interval):
+            # The timer has been "triggered"
             self.last_time = self.current_time
             return True
-        else:
-            return False
+        return False
 
     def set_interval(self, seconds):
         self.interval = seconds
