@@ -97,15 +97,9 @@ def simpleCircle(wait):
 
 
 
-button_A = DigitalInOut(board.BUTTON_A)
-button_A.direction = Direction.INPUT
-button_A.pull = Pull.DOWN
-
 
 while True:
 
-    if button_A.value == True:  # button is pushed
-        touchDemo = not(touchDemo)
 
     time.sleep(0.01)
     led.value = True
