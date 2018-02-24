@@ -14,11 +14,10 @@ class BlinkDemo(NonBlockingTimer):
         self.value = True
 
     def stop(self):
-        self.led.value = false
+        self.led.value = False
 
     def next(self):
         if (super(BlinkDemo, self).next()):
-            print ("value: %s" % self.led.value)
             self.led.value = not (self.led.value)
             if (self.value):
                 super(BlinkDemo, self).set_interval(0.1)
@@ -48,6 +47,12 @@ class TouchDemo(NonBlockingTimer):
         self.touch6 = touchio.TouchIn(board.A6)
         self.touch7 = touchio.TouchIn(board.A7)
         super(BlinkDemo, self).set_interval(0.01)
+
+    def stop(self):
+        self.pixels.fill((0,0,0))
+        self.pixels.show()
+        for pixel in self.pixels:
+            print (pixel)
 
     def next(self):
         if (super(TouchDemo, self).next()):

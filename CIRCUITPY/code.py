@@ -4,19 +4,27 @@ from demos import BlinkDemo, TouchDemo
 from buttonwatcher import ButtonWatcher
 
 
-demo1 = BlinkDemo()
-demo2 = TouchDemo()
-
+index = 0
+demos = [BlinkDemo(), TouchDemo()]
+currentDemo = demos[index]
 
 buttonA = ButtonWatcher(board.BUTTON_A)
 buttonB = ButtonWatcher(board.BUTTON_B)
 
 while True:
+    previousIndex = index
 
     if buttonA.wasPressed():  # button is pushed
-        print ("button A")
+        index += 1
     if buttonB.wasPressed():  # button is pushed
-        print ("button B")
+        index -= 1
 
-    demo2.next()
+    index %= len(demos)
+
+    if (previousIndex != index):
+        for demo in demos:
+            demo.stop()
+        currentDemo = demos[index]
+
+    currentDemo.next()
     time.sleep(0.001)
