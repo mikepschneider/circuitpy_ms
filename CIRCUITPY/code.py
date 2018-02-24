@@ -7,9 +7,10 @@ from buttonwatcher import ButtonWatcher
 index = 0
 demos = [
     demos.BlinkDemo(),
-    demos.RainbowDemo(),
-    demos.RainbowCycleDemo(),
+    # demos.RainbowDemo(),
+    # demos.RainbowCycleDemo(),
     demos.TouchDemo(),
+    demos.FlashDemo()
 ]
 
 currentDemo = demos[index]
