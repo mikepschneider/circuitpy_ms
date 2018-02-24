@@ -27,9 +27,14 @@ class BlinkDemo(NonBlockingTimer):
 
 
 class TouchDemo(NonBlockingTimer):
+
     def __init__(self):
         super(TouchDemo, self).__init__()
 
+        self.CAP_LOW = 700
+        self.CAP_HIGH = 3500
+        self.CAP_DIFF = float(self.CAP_HIGH - self.CAP_LOW)
+        self.MAX = 255 * 255 * 255
 
         self.pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness=.2)
         self.pixels.fill((0,0,0))
@@ -46,28 +51,23 @@ class TouchDemo(NonBlockingTimer):
 
     def next(self):
         if (super(TouchDemo, self).next()):
-            self.pixels[6] = mapCapToNeo(self.touch1.raw_value)
-            self.pixels[8] = mapCapToNeo(self.touch2.raw_value)
-            self.pixels[9] = mapCapToNeo(self.touch3.raw_value)
-            self.pixels[1] = mapCapToNeo(self.touch4.raw_value)
-            self.pixels[2] = mapCapToNeo(self.touch5.raw_value)
-            self.pixels[3] = mapCapToNeo(self.touch6.raw_value)
-            self.pixels[4] = mapCapToNeo(self.touch7.raw_value)
+            self.pixels[6] = self.mapCapToNeo(self.touch1.raw_value)
+            self.pixels[8] = self.mapCapToNeo(self.touch2.raw_value)
+            self.pixels[9] = self.mapCapToNeo(self.touch3.raw_value)
+            self.pixels[1] = self.mapCapToNeo(self.touch4.raw_value)
+            self.pixels[2] = self.mapCapToNeo(self.touch5.raw_value)
+            self.pixels[3] = self.mapCapToNeo(self.touch6.raw_value)
+            self.pixels[4] = self.mapCapToNeo(self.touch7.raw_value)
             self.pixels.show()
 
 
-CAP_LOW = 700
-CAP_HIGH = 3500
-CAP_DIFF = float(CAP_HIGH - CAP_LOW)
-MAX = 255 * 255 * 255
-
-def mapCapToNeo(rawValue):
-    val = rawValue
-    if val < 1200:
-        return (0, 0, 0)
-    val = min(val, CAP_HIGH)
-    val = max(val, CAP_LOW)
-    val = val - CAP_LOW
-    val = val / CAP_DIFF
-    val = int(val * MAX)
-    return (val, int(val / 2), int(val / 3))
+    def mapCapToNeo(self, rawValue):
+        val = rawValue
+        if val < 1200:
+            return (0, 0, 0)
+        val = min(val, self.CAP_HIGH)
+        val = max(val, self.CAP_LOW)
+        val = val - self.CAP_LOW
+        val = val / self.CAP_DIFF
+        val = int(val * self.MAX)
+        return (val, int(val / 2), int(val / 3))

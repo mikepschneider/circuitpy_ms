@@ -97,59 +97,6 @@ def simpleCircle(wait):
 
 
 
-touch1 = touchio.TouchIn(board.A1)
-touch2 = touchio.TouchIn(board.A2)
-touch3 = touchio.TouchIn(board.A3)
-touch4 = touchio.TouchIn(board.A4)
-touch5 = touchio.TouchIn(board.A5)
-touch6 = touchio.TouchIn(board.A6)
-touch7 = touchio.TouchIn(board.A7)
-
-
-def touch_demo():
-
-    pixels[6] = mapCapToNeo(touch1.raw_value)
-    pixels[8] = mapCapToNeo(touch2.raw_value)
-    pixels[9] = mapCapToNeo(touch3.raw_value)
-    pixels[1] = mapCapToNeo(touch4.raw_value)
-    pixels[2] = mapCapToNeo(touch5.raw_value)
-    pixels[3] = mapCapToNeo(touch6.raw_value)
-    pixels[4] = mapCapToNeo(touch7.raw_value)
-
-    print("A1 %16s A2 %16s A3 %16s A4 %16s A5 %16s A6 %16s A7 %16s"
-            % (pixels[6], pixels[8], pixels[9],
-            pixels[1], pixels[2], pixels[3], pixels[4]))
-    pixels.show()
-
-        # for j in range(255):
-        #     for i in range(len(pixels)):
-        #         idx = int (i+j)
-        #         pixels[i] = wheel(idx & 255)
-        #     pixels.show()
-        #     time.sleep(wait)
-        #
-    time.sleep(0.01)
-
-
-
-CAP_LOW = 700
-CAP_HIGH = 3500
-CAP_DIFF = float(CAP_HIGH - CAP_LOW)
-MAX = 255 * 255 * 255
-
-def mapCapToNeo(rawValue):
-    val = rawValue
-    if val < 1200:
-        return (0, 0, 0)
-    val = min(val, CAP_HIGH)
-    val = max(val, CAP_LOW)
-    val = val - CAP_LOW
-    val = val / CAP_DIFF
-    val = int(val * MAX)
-    return (val, int(val / 2), int(val / 3))
-
-
-
 button_A = DigitalInOut(board.BUTTON_A)
 button_A.direction = Direction.INPUT
 button_A.pull = Pull.DOWN
