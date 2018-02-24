@@ -51,8 +51,6 @@ class TouchDemo(NonBlockingTimer):
     def stop(self):
         self.pixels.fill((0,0,0))
         self.pixels.show()
-        for pixel in self.pixels:
-            print (pixel)
 
     def next(self):
         if (super(TouchDemo, self).next()):
