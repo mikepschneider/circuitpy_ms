@@ -1,11 +1,17 @@
 import board
 import time
-from demos import BlinkDemo, TouchDemo
+import demos
 from buttonwatcher import ButtonWatcher
 
 
 index = 0
-demos = [BlinkDemo(), TouchDemo()]
+demos = [
+    demos.BlinkDemo(),
+    demos.RainbowDemo(),
+    demos.RainbowCycleDemo(),
+    demos.TouchDemo(),
+]
+
 currentDemo = demos[index]
 
 buttonA = ButtonWatcher(board.BUTTON_A)
