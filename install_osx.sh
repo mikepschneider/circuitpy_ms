@@ -1,1 +1,2 @@
-rsync --recursive --verbose --update CIRCUITPY/* /Volumes/CIRCUITPY/
+rsync             --verbose --update CIRCUITPY/*.py  /Volumes/CIRCUITPY/
+rsync --recursive --verbose --update CIRCUITPY/lib/     /Volumes/CIRCUITPY/lib
