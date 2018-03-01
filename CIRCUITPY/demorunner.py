@@ -1,17 +1,21 @@
 import board
 import time
-import test
 import demos
+import nightlight
+import rainbowdemo
+import blinkdemo
 from buttonwatcher import ButtonWatcher
 
 
 index = 0
 demos = [
-    demos.BlinkDemo(),
-    demos.FlashDemo(),
-    demos.RainbowDemo(),
-    demos.RainbowCycleDemo(),
+    nightlight.NightLight(),
+    # blinkdemo.BlinkDemo(),
+    blinkdemo.FlashDemo(),
+    rainbowdemo.RainbowDemo(),
+    rainbowdemo.RainbowCycleDemo(),
     demos.TouchDemo(),
+
 ]
 
 currentDemo = demos[index]
@@ -22,9 +26,9 @@ buttonB = ButtonWatcher(board.BUTTON_B)
 while True:
     previousIndex = index
 
-    if buttonA.wasPressed():  # button is pushed
+    if buttonA.wasPressed():
         index += 1
-    if buttonB.wasPressed():  # button is pushed
+    if buttonB.wasPressed():
         index -= 1
 
     index %= len(demos)
