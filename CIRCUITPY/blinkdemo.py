@@ -12,7 +12,7 @@ AQUA = (0, 0x10, 0x10)
 BLUE = (0, 0, 0x10)
 PURPLE = (0x10, 0, 0x10)
 BLACK = (0, 0, 0)
-#
+
 COLORS = [RED, YELLOW, GREEN, AQUA, BLUE, PURPLE, BLACK]
 #
 class FlashDemo(NonBlockingTimer):
@@ -41,6 +41,7 @@ class FlashDemo(NonBlockingTimer):
 class BlinkDemo(NonBlockingTimer):
     def __init__(self):
         super(BlinkDemo, self).__init__()
+        super(BlinkDemo, self).set_interval(0.1)
         self.led = digitalio.DigitalInOut(board.D13)
         self.led.direction = digitalio.Direction.OUTPUT
         self.value = True
@@ -51,7 +52,3 @@ class BlinkDemo(NonBlockingTimer):
     def next(self):
         if (super(BlinkDemo, self).next()):
             self.led.value = not (self.led.value)
-            if (self.value):
-                super(BlinkDemo, self).set_interval(0.1)
-            else:
-                super(BlinkDemo, self).set_interval(0.05)
