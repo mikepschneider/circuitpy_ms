@@ -31,12 +31,11 @@ def wheel(pos):
 
 class RainbowDemo(NonBlockingTimer):
     def __init__(self):
-        super(RainbowDemo, self).__init__()
+        super(RainbowDemo, self).__init__(0.01)
         self._pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness=.2)
         self._pixels.fill((0,0,0))
         self._pixels.show()
         self._count = 0
-        super(RainbowDemo, self).set_interval(0.01)
 
     def next(self):
         if (super(RainbowDemo, self).next()):
@@ -53,12 +52,11 @@ class RainbowDemo(NonBlockingTimer):
 
 class RainbowCycleDemo(NonBlockingTimer):
     def __init__(self):
-        super(RainbowCycleDemo, self).__init__()
+        super(RainbowCycleDemo, self).__init__(0.01)
         self._pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness=.2)
         self._pixels.fill((0,0,0))
         self._pixels.show()
         self._count = 0
-        super(RainbowCycleDemo, self).set_interval(0.01)
 
 
     def next(self):

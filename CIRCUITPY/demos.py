@@ -17,12 +17,11 @@ COLORS = [RED, YELLOW, GREEN, AQUA, BLUE, PURPLE, BLACK]
 #
 class FlashDemo(NonBlockingTimer):
     def __init__(self):
-        super(FlashDemo, self).__init__()
+        super(FlashDemo, self).__init__(0.25)
         self._pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness = .2)
         self._pixels.fill((0,0,0))
         self._pixels.show()
         self._index = 0
-        super(FlashDemo, self).set_interval(0.25)
 
     def next(self):
         if (super(FlashDemo, self).next()):
@@ -60,7 +59,7 @@ class BlinkDemo(NonBlockingTimer):
 class TouchDemo(NonBlockingTimer):
 
     def __init__(self):
-        super(TouchDemo, self).__init__()
+        super(TouchDemo, self).__init__(0.01)
 
         self.CAP_LOW = 700
         self.CAP_HIGH = 3500
@@ -78,7 +77,6 @@ class TouchDemo(NonBlockingTimer):
         self.touch5 = touchio.TouchIn(board.A5)
         self.touch6 = touchio.TouchIn(board.A6)
         self.touch7 = touchio.TouchIn(board.A7)
-        super(BlinkDemo, self).set_interval(0.01)
 
     def stop(self):
         self.pixels.fill((0,0,0))

@@ -4,6 +4,7 @@
 # import neopixel
 # import touchio
 from nonblockingtimer import NonBlockingTimer
+from pixelanimator import PixelAnimator
 
 from simpleio import map_range
 from analogio import AnalogIn
@@ -11,22 +12,21 @@ import board
 import neopixel
 import time
 
-pixels = neopixel.NeoPixel(
-    board.NEOPIXEL, 10, auto_write=0, brightness=1.0)
-pixels.fill((0,0,0))
-pixels.show()
+ORANGE = (255, 40, 0)
+OFF = (0,0,0)
 
 analogin = AnalogIn(board.LIGHT)
 
 
 class NightLight(NonBlockingTimer):
     def __init__(self):
-        super(NightLight, self).__init__()
-        super(NightLight, self).set_interval(0.05)
+        super(NightLight, self).__init__(0.05)
+        self.pixels = neopixel.NeoPixel(
+            board.NEOPIXEL, 10, auto_write=0, brightness=1.0)
+        self.pixels.fill((0,0,0))
+        self.pixels.show()
+        self.animator = PixelAnimator(self.pixels)
 
-        # self.led = digitalio.DigitalInOut(board.D13)
-        # self.led.direction = digitalio.Direction.OUTPUT
-        # self.value = True
 
     def stop(self):
         pass
@@ -43,7 +43,7 @@ class NightLight(NonBlockingTimer):
 
             for i in range(0, 9, 1):
                  if i <= peak:
-                     pixels[i] = (255, 40, 0)
+                     self.pixels[i] = ORANGE
                  else:
-                     pixels[i] = (0,0,0)
-            pixels.show()
+                     self.pixels[i] = OFF
+            self.pixels.show()

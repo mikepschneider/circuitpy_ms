@@ -17,12 +17,11 @@ COLORS = [RED, YELLOW, GREEN, AQUA, BLUE, PURPLE, BLACK]
 #
 class FlashDemo(NonBlockingTimer):
     def __init__(self):
-        super(FlashDemo, self).__init__()
+        super(FlashDemo, self).__init__(0.25)
         self._pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness = .2)
         self._pixels.fill((0,0,0))
         self._pixels.show()
         self._index = 0
-        super(FlashDemo, self).set_interval(0.25)
 
     def next(self):
         if (super(FlashDemo, self).next()):
@@ -40,8 +39,7 @@ class FlashDemo(NonBlockingTimer):
 
 class BlinkDemo(NonBlockingTimer):
     def __init__(self):
-        super(BlinkDemo, self).__init__()
-        super(BlinkDemo, self).set_interval(0.1)
+        super(BlinkDemo, self).__init__(0.1)
         self.led = digitalio.DigitalInOut(board.D13)
         self.led.direction = digitalio.Direction.OUTPUT
         self.value = True

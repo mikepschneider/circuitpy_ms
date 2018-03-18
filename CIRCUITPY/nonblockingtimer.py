@@ -2,7 +2,7 @@ import time
 
 class NonBlockingTimer:
 
-    def __init__(self, interval = 0.5):
+    def __init__(self, interval):
         self._interval = interval
         self._current_time = time.monotonic()
         self._last_time = self._current_time
