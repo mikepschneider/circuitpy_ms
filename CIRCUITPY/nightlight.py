@@ -37,12 +37,12 @@ class NightLight(NonBlockingTimer):
             #light value remaped to pixel position
             peak = map_range(self.lightMeter.value, 800, 2000, 9, 0)
 
-            print("%s %s" % (int(peak), self.lightMeter.value))
+            # print("%s %s" % (int(peak), self.lightMeter.value))
 
             if self.on:
-                self.animator.fill(ORANGE)
+                self.animator.fill(ORANGE, 1, 50)
             else:
-                self.animator.fill(OFF)
+                self.animator.fill(OFF, 1, 50)
 
             self.on = not self.on
 

@@ -12,7 +12,7 @@ demos = [
     nightlight.NightLight(),
     blinkdemo.BlinkDemo(),
     blinkdemo.FlashDemo(),
-    rainbowdemo.RainbowDemo(),
+    # rainbowdemo.RainbowDemo(),
     rainbowdemo.RainbowCycleDemo(),
     demos.TouchDemo(),
 ]

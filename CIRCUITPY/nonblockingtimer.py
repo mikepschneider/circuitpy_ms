@@ -8,7 +8,6 @@ class NonBlockingTimer:
         self._interval = interval
         self._current_time = time.monotonic()
         self._last_time = self._current_time
-        self._stopped = False
 
     def next(self):
         """ Return true if the timer has been 'triggered' else
@@ -28,12 +27,7 @@ class NonBlockingTimer:
 
     def set_interval(self, seconds):
         """ Set the trigger interval time """
-        if (self._interval < 0 and seconds >= 0):
-            self.start()
         self._interval = seconds
-
-    def start(self):
-        print("NonBlockingTimer.start")
 
     def stop(self):
         """Stop the timer and do any cleanup needed. Restart by setting

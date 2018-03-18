@@ -27,7 +27,8 @@ class PixelAnimator(NonBlockingTimer):
         if (super(PixelAnimator, self).next()):
             print("animator triggered")
 
-    def fill(self, color):
+    def fill(self, color, interval, steps):
+        self._color = color
         self.pixels.fill(color)
 
     def show(self):
