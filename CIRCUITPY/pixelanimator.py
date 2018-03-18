@@ -31,9 +31,6 @@ class PixelAnimator(NonBlockingTimer):
         self._color = color
         self.pixels.fill(color)
 
-    def show(self):
-        self.pixels.show()
-
     def _getAnimator(self, animation_type):
         if animation_type == PixelAnimator.LINEAR:
             return _LinearAnimator()

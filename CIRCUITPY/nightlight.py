@@ -20,7 +20,7 @@ class NightLight(NonBlockingTimer):
     def __init__(self):
         super(NightLight, self).__init__(0.5)
         pixels = neopixel.NeoPixel(
-            board.NEOPIXEL, 10, auto_write=0, brightness=1.0)
+            board.NEOPIXEL, 10, auto_write=1, brightness=1.0)
         pixels.fill((0,0,0))
         pixels.show()
         self.on = False
@@ -45,5 +45,3 @@ class NightLight(NonBlockingTimer):
                 self.animator.fill(OFF, 1, 50)
 
             self.on = not self.on
-
-            self.animator.show()
