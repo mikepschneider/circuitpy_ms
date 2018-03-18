@@ -19,12 +19,12 @@ OFF = (0,0,0)
 class NightLight(NonBlockingTimer):
     def __init__(self):
         super(NightLight, self).__init__(0.5)
-        self.pixels = neopixel.NeoPixel(
+        pixels = neopixel.NeoPixel(
             board.NEOPIXEL, 10, auto_write=0, brightness=1.0)
-        self.pixels.fill((0,0,0))
-        self.pixels.show()
+        pixels.fill((0,0,0))
+        pixels.show()
         self.on = False
-        self.animator = PixelAnimator(self.pixels, PixelAnimator.LINEAR)
+        self.animator = PixelAnimator(pixels, PixelAnimator.LINEAR)
         self.lightMeter = AnalogIn(board.LIGHT)
 
 
