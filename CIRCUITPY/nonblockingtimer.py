@@ -2,7 +2,9 @@ import time
 
 class NonBlockingTimer:
 
-    def __init__(self, interval):
+
+    def __init__(self, interval = -1):
+        """interval < 0 == OFF (default) """
         self._interval = interval
         self._current_time = time.monotonic()
         self._last_time = self._current_time
@@ -10,7 +12,11 @@ class NonBlockingTimer:
 
     def next(self):
         """ Return true if the timer has been 'triggered' else
-            false. """
+            false.  If interval < = return false """
+
+        if self._interval < 0:
+            return False
+
         self._current_time = time.monotonic()
         elapsed = self._current_time - self._last_time
 

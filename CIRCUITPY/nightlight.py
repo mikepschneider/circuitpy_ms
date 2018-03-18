@@ -15,35 +15,35 @@ import time
 ORANGE = (255, 40, 0)
 OFF = (0,0,0)
 
-analogin = AnalogIn(board.LIGHT)
-
 
 class NightLight(NonBlockingTimer):
     def __init__(self):
-        super(NightLight, self).__init__(0.05)
+        super(NightLight, self).__init__(0.5)
         self.pixels = neopixel.NeoPixel(
             board.NEOPIXEL, 10, auto_write=0, brightness=1.0)
         self.pixels.fill((0,0,0))
         self.pixels.show()
-        self.animator = PixelAnimator(self.pixels)
+        self.on = False
+        self.animator = PixelAnimator(self.pixels, PixelAnimator.LINEAR)
+        self.lightMeter = AnalogIn(board.LIGHT)
 
 
     def stop(self):
         pass
-        # self.led.value = False
 
     def next(self):
         if (super(NightLight, self).next()):
 
             #light value remaped to pixel position
-            peak = map_range(analogin.value, 800, 2000, 9, 0)
+            peak = map_range(self.lightMeter.value, 800, 2000, 9, 0)
 
-            print("%s %s" % (int(peak), analogin.value))
+            print("%s %s" % (int(peak), self.lightMeter.value))
 
+            if self.on:
+                self.animator.fill(ORANGE)
+            else:
+                self.animator.fill(OFF)
 
-            for i in range(0, 9, 1):
-                 if i <= peak:
-                     self.pixels[i] = ORANGE
-                 else:
-                     self.pixels[i] = OFF
-            self.pixels.show()
+            self.on = not self.on
+
+            self.animator.show()

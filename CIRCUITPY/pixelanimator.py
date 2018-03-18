@@ -8,14 +8,15 @@ import pixelanimator as PixelAnimator
 import time
 
 
-analogin = AnalogIn(board.LIGHT)
-
-ORANGE = (255, 40, 0)
 
 class PixelAnimator(NonBlockingTimer):
-    def __init__(self, pixels):
-        super(PixelAnimator, self).__init__(0.05)
+
+    LINEAR = 0
+
+    def __init__(self, pixels, animation_type):
+        super(PixelAnimator, self).__init__(1)
         self.pixels = pixels
+        self.animator = self._getAnimator(animation_type)
         print("PixelAnimator Demo: pixel count = %s" % len(self.pixels))
 
     def stop(self):
@@ -25,3 +26,19 @@ class PixelAnimator(NonBlockingTimer):
     def next(self):
         if (super(PixelAnimator, self).next()):
             print("animator triggered")
+
+    def fill(self, color):
+        self.pixels.fill(color)
+
+    def show(self):
+        self.pixels.show()
+
+    def _getAnimator(self, animation_type):
+        if animation_type == PixelAnimator.LINEAR:
+            return _LinearAnimator()
+        raise Exception('Unknown animator: %s' % animation_type)
+
+
+class _LinearAnimator(NonBlockingTimer):
+    def __init__(self):
+        super(_LinearAnimator, self).__init__(1)
