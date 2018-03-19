@@ -2,7 +2,7 @@ import board
 import time
 import demos
 import nightlight
-import rainbowdemo
+# import rainbowdemo
 import blinkdemo
 from buttonwatcher import ButtonWatcher
 
@@ -13,8 +13,8 @@ demos = [
     blinkdemo.BlinkDemo(),
     blinkdemo.FlashDemo(),
     # rainbowdemo.RainbowDemo(),
-    rainbowdemo.RainbowCycleDemo(),
-    demos.TouchDemo(),
+    # rainbowdemo.RainbowCycleDemo(),
+    # demos.TouchDemo(),
 ]
 
 currentDemo = demos[index]
