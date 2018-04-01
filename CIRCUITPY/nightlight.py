@@ -1,30 +1,40 @@
-# import board
-# import digitalio
-# from digitalio import DigitalInOut, Direction, Pull
-# import neopixel
-# import touchio
 from nonblockingtimer import NonBlockingTimer
 from pixelanimator import PixelAnimator
 
-from simpleio import map_range
-from analogio import AnalogIn
-import board
+from board import *
+
 import neopixel
-import time
+from digitalio import DigitalInOut, Direction
+from analogio import AnalogIn
 
 
 class NightLight(NonBlockingTimer):
-    def __init__(self):
-        super(NightLight, self).__init__()
-        pixels = neopixel.NeoPixel(
-            board.NEOPIXEL, 10, auto_write=1, brightness=1.0)
-        pixels.fill((0,0,0))
-        pixels.show()
-        self.on = False
-        self.animator = PixelAnimator(pixels)
+  def __init__(self):
+    super(NightLight, self).__init__()
+    pixels = neopixel.NeoPixel(
+        NEOPIXEL, 10, auto_write=1, brightness=1.0)
+    pixels.fill((0,0,0))
+    pixels.show()
+    self._on = False
+    self._animator = PixelAnimator(pixels)
 
-    def stop(self):
-        pass
+    self._irSensor = AnalogIn(IR_PROXIMITY)
 
-    def next(self):
-        self.animator.next()
+    self._irInput = DigitalInOut(REMOTEIN)
+    self._irInput.direction = Direction.INPUT
+
+    self._irOutput = DigitalInOut(REMOTEOUT)
+    self._irOutput.direction = Direction.OUTPUT
+
+    self._microphone = DigitalInOut(MICROPHONE_DATA)
+    self._irOutput.direction = Direction.INPUT
+
+  def stop(self):
+    print('stop')
+    self._irSensor.deinit()
+    self._irInput.deinit()
+
+  def next(self):
+    print("ir: %d mic: %d" % (self._irSensor.value, self._irOutput.value))
+
+    self._animator.next()

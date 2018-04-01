@@ -1,7 +1,6 @@
 from nonblockingtimer import NonBlockingTimer
 
 from simpleio import map_range
-from analogio import AnalogIn
 import board
 import neopixel as NeoPixel
 import pixelanimator as PixelAnimator
