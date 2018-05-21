@@ -1,4 +1,4 @@
-from nonblockingtimer import NonBlockingTimer
+from nonblocking_timer import nonblocking_timer
 from pixelanimator import PixelAnimator
 
 from board import *
@@ -8,7 +8,7 @@ from digitalio import DigitalInOut, Direction
 from analogio import AnalogIn
 
 
-class NightLight(NonBlockingTimer):
+class NightLight(nonblocking_timer):
   def __init__(self):
     super(NightLight, self).__init__()
     pixels = neopixel.NeoPixel(
@@ -35,6 +35,6 @@ class NightLight(NonBlockingTimer):
     self._irInput.deinit()
 
   def next(self):
-    print("ir: %d mic: %d" % (self._irSensor.value, self._irOutput.value))
+    # print("ir: %d mic: %d" % (self._irSensor.value, self._irOutput.value))
 
     self._animator.next()

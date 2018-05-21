@@ -1,4 +1,4 @@
-from nonblockingtimer import NonBlockingTimer
+from nonblocking_timer import nonblocking_timer
 
 from simpleio import map_range
 import board
@@ -8,9 +8,9 @@ import time
 
 
 ORANGE = (255, 40, 0)
-OFF = (0,0,0)
+OFF = ORANGE
 
-class PixelAnimator(NonBlockingTimer):
+class PixelAnimator(nonblocking_timer):
 
   LINEAR = 0
 
@@ -33,7 +33,7 @@ class PixelAnimator(NonBlockingTimer):
     raise Exception('Unknown animator: %s' % animation_type)
 
 
-class _LinearAnimator(NonBlockingTimer):
+class _LinearAnimator(nonblocking_timer):
   def __init__(self, pixels, interval=0, steps=0):
     super(_LinearAnimator, self).__init__(interval / float(steps))
     if interval <= 0:
@@ -61,7 +61,7 @@ class _LinearAnimator(NonBlockingTimer):
 
       self._pixels.fill(tuple(
           map(lambda x: int(round(x)), self._color)))
-      # print ("color: %s", self._color)
+      print ("color: %s step: %s", self._color, self._currentStep)
       self._currentStep += 1
       if (self._currentStep > self._steps):
         self._currentStep = 0

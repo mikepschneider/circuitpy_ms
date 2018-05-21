@@ -1,1 +1,0 @@
-Adafruit CircuitPython 2.2.3 on 2018-02-05; Adafruit CircuitPlayground Express with samd21g18

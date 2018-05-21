@@ -1,6 +1,6 @@
 import board
 import digitalio
-from nonblockingtimer import NonBlockingTimer
+from nonblocking_timer import nonblocking_timer
 from digitalio import DigitalInOut, Direction, Pull
 import neopixel
 import touchio
@@ -15,7 +15,7 @@ BLACK = (0, 0, 0)
 
 COLORS = [RED, YELLOW, GREEN, AQUA, BLUE, PURPLE, BLACK]
 #
-class FlashDemo(NonBlockingTimer):
+class FlashDemo(nonblocking_timer):
     def __init__(self):
         super(FlashDemo, self).__init__(0.25)
         self._pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness = .2)
@@ -37,7 +37,7 @@ class FlashDemo(NonBlockingTimer):
 
 
 
-class BlinkDemo(NonBlockingTimer):
+class BlinkDemo(nonblocking_timer):
     def __init__(self):
         super(BlinkDemo, self).__init__(0.1)
         self.led = digitalio.DigitalInOut(board.D13)
