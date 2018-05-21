@@ -74,7 +74,6 @@ class nonblocking_timer(object):
     self._interval = interval
     self._status = nonblocking_timer._STOPPED
     self._start_time = 0
-    print("init: interval: %s" % self._interval)
 
   @property
   def status(self):
@@ -116,7 +115,6 @@ class nonblocking_timer(object):
     """Sets status to _RUNNING. Sets start_time to time.monotonic(). Call
        next() repeatedly to determine if the timer has been triggered.
        If interval <= 0 raise a RuntimeError """
-    print("start: interval: %s" % self._interval)
     if self._interval <= 0:
       raise RuntimeError('Interval must be > 0')
 
@@ -126,7 +124,6 @@ class nonblocking_timer(object):
   def set_interval(self, seconds):
     """ Set the trigger interval time in seconds (float). If interval <= 0
         raise a RuntimeError """
-    print("set_interval: interval: %s" % self._interval)
     if seconds <= 0:
       raise RuntimeError('Interval must be > 0')
     self._interval = seconds
