@@ -25,7 +25,6 @@ class FlashDemo(nonblocking_timer):
 
   def next(self):
     if (super(FlashDemo, self).next()):
-      pass
       self._pixels.fill(COLORS[self._index])
       self._index += 1
       self._index %= len(COLORS)
@@ -49,6 +48,6 @@ class BlinkDemo(nonblocking_timer):
     if (super(BlinkDemo, self).next()):
       self.led.value = not (self.led.value)
       if self.led.value:
-        self.set_interval(0.1)
+        self.set_interval(0.01)
       else:
-        self.set_interval(2)
+        self.set_interval(0.5)

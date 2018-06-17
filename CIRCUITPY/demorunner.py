@@ -10,10 +10,10 @@ from buttonwatcher import ButtonWatcher
 index = 0
 demos = [
     # nightlight.NightLight(),
-    blinkdemo.BlinkDemo(),
     # blinkdemo.FlashDemo(),
     # rainbowdemo.RainbowDemo(),
     rainbowdemo.RainbowCycleDemo(),
+    # blinkdemo.BlinkDemo(),
     # demos.TouchDemo(),
 ]
 
